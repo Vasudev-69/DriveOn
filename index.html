@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DriveOn - Premium Ride Booking</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-logo">
+                <span class="logo-drive">Drive</span><span class="logo-on">On</span>
+            </div>
+            
+            <ul class="navbar-menu">
+                <li><a href="#home" class="nav-link">Home</a></li>
+                
+                <li class="nav-dropdown">
+                    <a href="#services" class="nav-link">Services <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">City Rentals</a>
+                        <a href="#" class="dropdown-item">Airport Transfers</a>
+                        <a href="#" class="dropdown-item">Corporate Travel</a>
+                        <a href="#" class="dropdown-item">Long Distance</a>
+                    </div>
+                </li>
+                
+                <li class="nav-dropdown">
+                    <a href="#business" class="nav-link">For Business <span class="dropdown-arrow">▼</span></a>
+                    <div class="dropdown-menu">
+                        <a href="#" class="dropdown-item">Fleet Management</a>
+                        <a href="#" class="dropdown-item">Business Accounts</a>
+                        <a href="#" class="dropdown-item">Pricing</a>
+                        <a href="#" class="dropdown-item">Solutions</a>
+                    </div>
+                </li>
+                
+                <li><a href="#about" class="nav-link">About</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- HERO SECTION -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <!-- LEFT: BOOKING CARD -->
+            <div class="hero-left">
+                <div class="booking-card">
+                    <!-- TABS -->
+                    <div class="booking-tabs">
+                        <button class="tab-button active" data-tab="one-way">One Way</button>
+                        <button class="tab-button" data-tab="round-trip">Round Trip</button>
+                        <button class="tab-button" data-tab="outstation">Outstation</button>
+                    </div>
+
+                    <!-- FORM -->
+                    <form class="booking-form">
+                        <!-- Pickup Location -->
+                        <div class="form-group">
+                            <label for="pickup">Pickup Location</label>
+                            <input type="text" id="pickup" placeholder="Enter pickup location" required>
+                        </div>
+
+                        <!-- Drop Location -->
+                        <div class="form-group">
+                            <label for="drop">Drop Location</label>
+                            <input type="text" id="drop" placeholder="Enter drop location" required>
+                        </div>
+
+                        <!-- Date and Time Row -->
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="date">Date</label>
+                                <input type="date" id="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="time">Time</label>
+                                <input type="time" id="time" required>
+                            </div>
+                        </div>
+
+                        <!-- NOW / SCHEDULE Toggle -->
+                        <div class="form-group">
+                            <label class="toggle-label">
+                                <input type="checkbox" id="schedule-toggle" class="toggle-input">
+                                <span class="toggle-track"></span>
+                                <span class="toggle-text">Schedule for later</span>
+                            </label>
+                        </div>
+
+                        <!-- Car Type Dropdown -->
+                        <div class="form-group">
+                            <label for="car-type">Car Type</label>
+                            <select id="car-type" required>
+                                <option value="">Select car type</option>
+                                <option value="manual">Manual</option>
+                                <option value="automatic">Automatic</option>
+                            </select>
+                        </div>
+
+                        <!-- Vehicle Category -->
+                        <div class="form-group">
+                            <label for="vehicle-category">Vehicle Category</label>
+                            <select id="vehicle-category" required>
+                                <option value="">Select category</option>
+                                <option value="hatchback">Hatchback</option>
+                                <option value="sedan">Sedan</option>
+                                <option value="suv">SUV</option>
+                            </select>
+                        </div>
+
+                        <!-- Request Driver Button -->
+                        <button type="submit" class="btn-request">Request Driver</button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- RIGHT: MAP SECTION -->
+            <div class="hero-right">
+                <div class="map-container">
+                    <svg class="map-svg" viewBox="0 0 500 600" preserveAspectRatio="xMidYMid slice">
+                        <defs>
+                            <!-- Gradients -->
+                            <radialGradient id="mapGradient" cx="50%" cy="50%" r="60%">
+                                <stop offset="0%" style="stop-color:#1e3a5f;stop-opacity:0.3" />
+                                <stop offset="100%" style="stop-color:#0f172a;stop-opacity:0" />
+                            </radialGradient>
+
+                            <radialGradient id="glowGradient" cx="50%" cy="50%" r="100%">
+                                <stop offset="0%" style="stop-color:#22c55e;stop-opacity:0.6" />
+                                <stop offset="100%" style="stop-color:#22c55e;stop-opacity:0" />
+                            </radialGradient>
+
+                            <filter id="glow">
+                                <feGaussianBlur stdDeviation="2" result="coloredBlur"/>
+                                <feMerge>
+                                    <feMergeNode in="coloredBlur"/>
+                                    <feMergeNode in="SourceGraphic"/>
+                                </feMerge>
+                            </filter>
+
+                            <!-- Animation -->
+                            <style>
+                                @keyframes float {
+                                    0%, 100% { opacity: 0.7; }
+                                    50% { opacity: 1; }
+                                }
+                                .vehicle-marker {
+                                    animation: float 3s ease-in-out infinite;
+                                }
+                                .vehicle-marker.active {
+                                    animation: float 2s ease-in-out infinite;
+                                }
+                            </style>
+                        </defs>
+
+                        <!-- Background -->
+                        <rect width="500" height="600" fill="#0f172a"/>
+
+                        <!-- Grid Pattern (subtle) -->
+                        <g opacity="0.05" stroke="#22c55e" stroke-width="1">
+                            <line x1="0" y1="75" x2="500" y2="75"/>
+                            <line x1="0" y1="150" x2="500" y2="150"/>
+                            <line x1="0" y1="225" x2="500" y2="225"/>
+                            <line x1="0" y1="300" x2="500" y2="300"/>
+                            <line x1="0" y1="375" x2="500" y2="375"/>
+                            <line x1="0" y1="450" x2="500" y2="450"/>
+                            <line x1="0" y1="525" x2="500" y2="525"/>
+                            <line x1="62.5" y1="0" x2="62.5" y2="600"/>
+                            <line x1="125" y1="0" x2="125" y2="600"/>
+                            <line x1="187.5" y1="0" x2="187.5" y2="600"/>
+                            <line x1="250" y1="0" x2="250" y2="600"/>
+                            <line x1="312.5" y1="0" x2="312.5" y2="600"/>
+                            <line x1="375" y1="0" x2="375" y2="600"/>
+                            <line x1="437.5" y1="0" x2="437.5" y2="600"/>
+                        </g>
+
+                        <!-- Road paths (curved and layered) -->
+                        <path d="M 50 100 Q 150 150 250 120 T 450 180" stroke="#22c55e" stroke-width="3" fill="none" opacity="0.4"/>
+                        <path d="M 80 200 Q 200 250 300 220 T 480 300" stroke="#22c55e" stroke-width="2" fill="none" opacity="0.3"/>
+                        <path d="M 100 350 Q 220 400 320 380 T 460 450" stroke="#22c55e" stroke-width="2.5" fill="none" opacity="0.35"/>
+                        
+                        <!-- Main Route (dotted) -->
+                        <path d="M 120 280 Q 250 350 380 320" stroke="#22c55e" stroke-width="2" stroke-dasharray="5,5" fill="none" opacity="0.6"/>
+
+                        <!-- Vehicle Markers with glow -->
+                        <!-- Vehicle 1 (Active) -->
+                        <circle cx="120" cy="280" r="20" fill="url(#glowGradient)" opacity="0.4"/>
+                        <circle class="vehicle-marker active" cx="120" cy="280" r="8" fill="#22c55e" filter="url(#glow)"/>
+                        
+                        <!-- Vehicle 2 -->
+                        <circle cx="250" cy="350" r="16" fill="url(#glowGradient)" opacity="0.2"/>
+                        <circle class="vehicle-marker" cx="250" cy="350" r="6" fill="#22c55e" filter="url(#glow)"/>
+                        
+                        <!-- Vehicle 3 -->
+                        <circle cx="380" cy="320" r="16" fill="url(#glowGradient)" opacity="0.2"/>
+                        <circle class="vehicle-marker" cx="380" cy="320" r="6" fill="#22c55e" filter="url(#glow)"/>
+                        
+                        <!-- Vehicle 4 -->
+                        <circle cx="200" cy="150" r="16" fill="url(#glowGradient)" opacity="0.2"/>
+                        <circle class="vehicle-marker" cx="200" cy="150" r="6" fill="#22c55e" filter="url(#glow)"/>
+                        
+                        <!-- Vehicle 5 -->
+                        <circle cx="420" cy="480" r="16" fill="url(#glowGradient)" opacity="0.2"/>
+                        <circle class="vehicle-marker" cx="420" cy="480" r="6" fill="#22c55e" filter="url(#glow)"/>
+                        
+                        <!-- Vehicle 6 -->
+                        <circle cx="100" cy="450" r="16" fill="url(#glowGradient)" opacity="0.2"/>
+                        <circle class="vehicle-marker" cx="100" cy="450" r="6" fill="#22c55e" filter="url(#glow)"/>
+                    </svg>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- HOW IT WORKS SECTION -->
+    <section class="how-it-works" id="how">
+        <div class="container">
+            <h2 class="section-title">How DriveOn Works</h2>
+            
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="18" stroke="#22c55e" stroke-width="2"/>
+                            <path d="M 12 20 H 28" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                            <path d="M 20 12 V 28" stroke="#22c55e" stroke-width="2" stroke-linecap="round"/>
+                        </svg>
+                    </div>
+                    <h3>Enter Trip Details</h3>
+                    <p>Choose your pickup and drop locations, date, and time. Select your preferred car type and category.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="18" stroke="#22c55e" stroke-width="2"/>
+                            <path d="M 15 18 L 18 22 L 27 13" stroke="#22c55e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                    </div>
+                    <h3>Choose Vehicle Type</h3>
+                    <p>Browse available vehicles that match your requirements. Compare options and select the best fit for your journey.</p>
+                </div>
+
+                <div class="step">
+                    <div class="step-icon">
+                        <svg width="40" height="40" viewBox="0 0 40 40" fill="none">
+                            <circle cx="20" cy="20" r="18" stroke="#22c55e" stroke-width="2"/>
+                            <rect x="10" y="12" width="20" height="16" stroke="#22c55e" stroke-width="2" rx="2"/>
+                            <circle cx="20" cy="28" r="2" fill="#22c55e"/>
+                        </svg>
+                    </div>
+                    <h3>Confirm Booking</h3>
+                    <p>Finalize your booking with one click. Get instant confirmation and track your driver in real-time.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section class="about" id="about">
+        <div class="container">
+            <h2 class="section-title">About DriveOn</h2>
+            <div class="about-content">
+                <p class="about-text">
+                    DriveOn is a premium ride-booking platform designed for professionals who value reliability, transparency, and comfort. 
+                    Whether you're commuting across the city, heading to the airport, or planning a long-distance journey, DriveOn connects you with 
+                    verified drivers and well-maintained vehicles. We prioritize safety, punctuality, and customer satisfaction at every step of your journey.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 DriveOn. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
