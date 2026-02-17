@@ -167,10 +167,4 @@ This project demonstrates:
 - Edge 90+
 - Mobile browsers (iOS Safari, Chrome Mobile)
 
-## 📝 License
 
-Created as a portfolio project. Feel free to use as reference or template.
-
----
-
-**Built with ❤️ using pure web technologies**
